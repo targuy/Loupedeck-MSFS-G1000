@@ -5,4 +5,7 @@
   <Folder Name="/tests/">
     <Project Path="tests/LoupedeckMSFSG1000.Tests/LoupedeckMSFSG1000.Tests.csproj" />
   </Folder>
+  <Folder Name="/spikes/">
+    <Project Path="spikes/LoupedeckMSFSG1000.Spikes.WaSimBidi/LoupedeckMSFSG1000.Spikes.WaSimBidi.csproj" />
+  </Folder>
 </Solution>

@@ -1,9 +1,50 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>LoupedeckMSFSG1000</RootNamespace>
+    <AssemblyName>LoupedeckMSFSG1000Plugin</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PluginApiDir Condition="$(OS) == 'Windows_NT'">C:\Program Files\Logi\LogiPluginService\</PluginApiDir>
+    <PluginApiDir Condition="$(OS) != 'Windows_NT'">/Applications/Utilities/LogiPluginService.app/Contents/MonoBundle/</PluginApiDir>
+    <PluginDir Condition="$(OS) == 'Windows_NT'">$(LocalAppData)\Logi\LogiPluginService\Plugins\</PluginDir>
+    <PluginDir Condition="$(OS) != 'Windows_NT'">~/Library/Application\ Support/Logi/LogiPluginService/Plugins/</PluginDir>
+    <BaseOutputPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\bin\'))</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)$(Configuration)\bin\</OutputPath>
+    <PluginShortName>LoupedeckMSFSG1000</PluginShortName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Spikes\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PluginApi">
+      <HintPath>$(PluginApiDir)PluginApi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\.external\WASimCommander\SDK\lib\managed\net8\WASimCommander.WASimClient.dll')">
+    <None Include="$(MSBuildThisFileDirectory)..\..\.external\WASimCommander\SDK\lib\managed\net8\WASimCommander.WASimClient.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(MSBuildThisFileDirectory)..\..\.external\WASimCommander\SDK\lib\managed\net8\Ijwhost.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(MSBuildThisFileDirectory)..\..\.external\WASimCommander\SDK\lib\managed\net8\client_conf.ini" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="CopyPackage" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <PackageFiles Include="package\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(OutputPath)..\%(RecursiveDir)" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('$(PluginDir)')">
+    <Exec Condition="$(OS) == 'Windows_NT'" Command="echo $(BaseOutputPath)$(Configuration)\ &gt; &quot;$(PluginDir)$(ProjectName).link&quot;" />
+    <Exec Condition="$(OS) != 'Windows_NT'" Command="echo $(BaseOutputPath)$(Configuration)\ &gt; $(PluginDir)$(ProjectName).link" />
+    <Exec Condition="$(OS) == 'Windows_NT'" Command="start loupedeck:plugin/$(PluginShortName)/reload" ContinueOnError="true" />
+    <Exec Condition="$(OS) != 'Windows_NT'" Command="open loupedeck:plugin/$(PluginShortName)/reload" ContinueOnError="true" />
+  </Target>
 
 </Project>

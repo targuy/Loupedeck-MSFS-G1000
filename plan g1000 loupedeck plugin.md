@@ -806,3 +806,35 @@ soient validés et leurs résultats documentés.
 -----
 
 *G1000-Loupedeck-Plugin — Plan v2.0 — Mai 2026*
+
+-----
+
+## 19. Addendum v3 — Organisation par univers
+
+Statut : decision produit apres essais CT et analyse ergonomique.
+
+Le plugin ne doit pas melanger les commandes Garmin, les commandes aviation generale et les commandes du simulateur dans les memes pages. L'utilisateur doit pouvoir choisir son usage :
+
+1. **Univers Garmin G1000 NXi**  
+   Pages et actions qui miment le bezel Garmin : softkeys PFD/MFD, FMS, `D->`, `FPL`, `MENU`, `PROC`, `CLR`, `ENT`, COM/NAV Garmin, autopilote G1000. Ces pages utilisent en priorite les events `H:AS1000_*` et, a terme, les libelles dynamiques issus du `SoftKeyMenuSystem`.
+
+2. **Univers Aviation Generale**  
+   Pages pour avions plus anciens ou sans Garmin. Ces pages utilisent les commandes et donnees generiques MSFS via WASim/SimConnect : NAV, COM, lights, flaps, gear, trim, power, magnetos, starter, fuel pump, parking brake, autopilote generique si present.
+
+3. **Univers Simulateur**  
+   Pages pour l'interaction avec le jeu : vues, pause, ATC, VFR map, options non avioniques, aides et outils MSFS. Ces actions ne doivent pas polluer les pages avioniques.
+
+4. **Univers Jets / Liners**  
+   Extension future. Ne creer des pages jets/liners que lorsque les commandes specifiques sont verifiees. Ne pas introduire de pages placeholder dans les profils utilisateurs si elles ne font rien.
+
+Regle de conception : **une page = un univers ou un cas d'utilisation clair dans cet univers**.
+
+Navigation CT recommandee :
+
+- boutons physiques 1-4 : `PFD`, `MFD`, `AP`, `COM/NAV` ;
+- bouton physique 5 : `G1000 FIXED` ;
+- bouton physique 6 : entree vers pages `GA` ;
+- bouton physique 7 : entree vers pages `SIM` ;
+- bouton physique 8 : reserve page suivante/retour selon les contraintes du device.
+
+La page par defaut d'un profil Garmin ne doit pas etre un menu de raccourcis. Elle doit etre une page de travail (`PFD`, `MFD` ou `AP`). Un menu peut exister pour la decouverte, mais ne doit pas devenir l'interface principale en vol.

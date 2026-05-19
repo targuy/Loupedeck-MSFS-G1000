@@ -26,3 +26,28 @@ TestResults.xml
 bin/
 obj/
 .vs/
+.template-inspect/
+.external/
+Ijwhost.dll
+client_conf.ini
+WASimClient.log*
+
+### Local backups / generated profiles ###
+maintenance_backups/
+*.zip
+*.lp5
+*.lplug4
+*.bak
+
+### Local Loupedeck tooling dumps and proprietary/generated assets ###
+Profile builer loupedeck/Loupedeck/
+Profile builer loupedeck/profiles exported/
+Profile builer loupedeck/*.xlsx
+assets/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+__pycache__/
+*.pyc

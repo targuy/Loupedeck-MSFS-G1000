@@ -1,0 +1,12 @@
+index,display_name,icon,kind,action_id,exe,args,cwd,keys,color,fn_action_id
+0,Excel,excel.png,launch-app,,C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE,,,,#107C41,
+1,Outlook,outlook.png,launch-app,,shell:AppsFolder\Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows,,,,#0078D4,
+2,Screenshot,snip.png,keyboard,,,,,Windows+Shift+S,#888888,
+3,Lock,lock.png,existing-action,$DefaultWin___LockWorkstation,,,,,#FF0000,
+4,Volume Mixer,mixer.png,existing-action,$DefaultWin___#DynamicFolder___DynamicFolder#Loupedeck.DefaultWinPlugin.VolumeMixerOutputDynamicFolder,,,,,,
+5,Task Switcher,tasks.png,existing-action,$DefaultWin___#DynamicFolder___DynamicFolder#Loupedeck.DefaultWinPlugin.TaskSwitcherDynamicFolder,,,,,,
+6,Win Explorer,explorer.png,existing-action,$DefaultWin___WindowsExplorer,,,,,,
+7,Win Search,search.png,existing-action,$DefaultWin___WindowsSearch,,,,,,
+8,Emoji,emoji.png,existing-action,$DefaultWin___WindowsEmoji,,,,,,
+9,Greet,,macro-keysequence,,,,,H|I|Space|W|O|R|L|D,,
+10,,,empty,,,,,,,
