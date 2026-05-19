@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LoupedeckMSFSG1000/LoupedeckMSFSG1000.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LoupedeckMSFSG1000.Tests/LoupedeckMSFSG1000.Tests.csproj" />
+  </Folder>
+</Solution>
